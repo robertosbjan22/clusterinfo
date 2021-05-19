@@ -11,6 +11,53 @@ In-cluster Kubernetes UI designed for teaching Kubernetes concepts.
 
 # Installation:
 
+Install Azure CLI from the following link:
+
+```code
+https://aka.ms/installazurecliwindows
+```
+
+Running as administrator, execute the following command on Powershell
+
+```shell
+Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
+```
+
+Execute the following command on Powershell to install Helm 3
+
+```shell
+choco install kubernetes-helm
+```
+
+> [!NOTE]
+> Check the result from previous command to proper add Kubectl on your Path
+>
+
+Log-in your Azure Subscription (check if you are logged on the right subscription)
+
+```shell
+az login
+```
+
+create an AKS
+
+```shell
+az group create --name myResourceGroup --location eastus
+az provider show -n Microsoft.OperationsManagement -o table
+az provider show -n Microsoft.OperationalInsights -o table
+az provider register --namespace Microsoft.OperationsManagement
+az provider register --namespace Microsoft.OperationalInsights
+az aks create --resource-group myResourceGroup --name myAKSCluster --node-count 1 --enable-addons monitoring --generate-ssh-keys
+```
+
+more information : https://docs.microsoft.com/en-us/azure/aks/kubernetes-walkthrough
+
+Get AKS Credentials
+
+```shell
+az aks get-credentials --resource-group myResourceGroup --name myAKSCluster
+```
+
 Add the Helm repo:
 
 ```shell
