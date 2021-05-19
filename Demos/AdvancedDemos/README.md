@@ -13,7 +13,7 @@ It's a good idea to create a brand new cluster prior to going through the demos 
 Use the following command to create a customized AKS Autoscaler (update **resource-group** and cluster **name** first):
 
 ```shell
-az aks update --resource-group <resource group> --name <cluster name>  --enable-cluster-autoscaler --min-count 2 --max-count 5 --cluster-autoscaler-profile scale-down-unneeded-time=1m scale-down-delay-after-add=1m scale-down-unready-time=1m  skip-nodes-with-system-pods=false
+az aks update --resource-group myResourceGroup --name myAKSCluster  --enable-cluster-autoscaler --min-count 2 --max-count 5 --cluster-autoscaler-profile scale-down-unneeded-time=1m scale-down-delay-after-add=1m scale-down-unready-time=1m  skip-nodes-with-system-pods=false
 ```
 
 #### 2. Install KEDA
@@ -25,8 +25,6 @@ helm repo add kedacore https://kedacore.github.io/charts
 kubectl create namespace keda
 helm install keda kedacore/keda --namespace keda
 ```
-
-
 
 # Using Demos
 
@@ -45,6 +43,7 @@ cd 1_Basics/BasicDeployments
 read-host "Navigate to the Deployments page"
 
 read-host "Next Step - Creates initial deployment"
+
 kubectl apply -k ./base
 
 read-host "Next Step - Updates the deployment to trigger a new replica set"
