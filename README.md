@@ -29,6 +29,12 @@ Execute the following command on Powershell to install Helm 3
 choco install kubernetes-helm
 ```
 
+Install Kubernetes Client
+
+```shell
+az aks install-cli
+```
+>
 > [!NOTE]
 > Check the result from previous command to proper add Kubectl on your Path
 >
